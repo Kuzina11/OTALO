@@ -1,0 +1,131 @@
+  
+  
+<!-- events.html -->
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function calculateTotal(row) {
+            let price = parseInt(document.getElementById(`price${row}`).innerText.replace('€', ''));
+            let quantity = parseInt(document.getElementById(`quantity${row}`).value) || 0;
+            document.getElementById(`total${row}`).innerText = (price * quantity) + '€';
+        }
+        
+        function updatePrice() {
+            let dateInput = document.getElementById("venueDate").value;
+            if (!dateInput) return;
+            let day = new Date(dateInput).getDay();
+            let price = (day >= 1 && day <= 4) ? 200 : 300;
+            document.getElementById("venuePrice").innerText = price + "€";
+        }
+
+        function confirmBooking(event) {
+            event.preventDefault();
+            let dateInput = document.getElementById("venueDate").value;
+            if (!dateInput) {
+                alert("Please select a date to book the venue.");
+                return;
+            }
+            let price = document.getElementById("venuePrice").innerText;
+            alert("You have successfully booked the venue on " + dateInput + " for " + price);
+        }
+    </script>
+</head>
+<body>
+    <h1>Events</h1>
+    <table border="1" align="center">
+        <tr>
+            <th>Date</th>
+            <th>Gig Name</th>
+            <th>Ticket Price</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+        </tr>
+        <tr>
+            <td>2025-03-10</td>
+            <td><a href="gig1.html">Jaakko Laitinen & Väärä Raha</a></td>
+            <td id="price1">20€</td>
+            <td><input type="number" id="quantity1" min="0" oninput="calculateTotal(1)"></td>
+            <td id="total1">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-12</td>
+            <td><a href="gig2.html">Philip Holm. Tailor's Fiddle</a></td>
+            <td id="price2">25€</td>
+            <td><input type="number" id="quantity2" min="0" oninput="calculateTotal(2)"></td>
+            <td id="total2">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-15</td>
+            <td><a href="gig3.html">YONA</a></td>
+            <td id="price3">30€</td>
+            <td><input type="number" id="quantity3" min="0" oninput="calculateTotal(3)"></td>
+            <td id="total3">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-18</td>
+            <td>Jazz Night</td>
+            <td id="price4">20€</td>
+            <td><input type="number" id="quantity4" min="0" oninput="calculateTotal(4)"></td>
+            <td id="total4">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-20</td>
+            <td>Electronic Beats</td>
+            <td id="price5">25€</td>
+            <td><input type="number" id="quantity5" min="0" oninput="calculateTotal(5)"></td>
+            <td id="total5">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-22</td>
+            <td>Indie Vibes</td>
+            <td id="price6">30€</td>
+            <td><input type="number" id="quantity6" min="0" oninput="calculateTotal(6)"></td>
+            <td id="total6">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-25</td>
+            <td>Rock Legends</td>
+            <td id="price7">20€</td>
+            <td><input type="number" id="quantity7" min="0" oninput="calculateTotal(7)"></td>
+            <td id="total7">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-27</td>
+            <td>Symphony Night</td>
+            <td id="price8">25€</td>
+            <td><input type="number" id="quantity8" min="0" oninput="calculateTotal(8)"></td>
+            <td id="total8">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-29</td>
+            <td>Pop Stars</td>
+            <td id="price9">30€</td>
+            <td><input type="number" id="quantity9" min="0" oninput="calculateTotal(9)"></td>
+            <td id="total9">0€</td>
+        </tr>
+        <tr>
+            <td>2025-03-31</td>
+            <td>Blues & Soul</td>
+            <td id="price10">20€</td>
+            <td><input type="number" id="quantity10" min="0" oninput="calculateTotal(10)"></td>
+            <td id="total10">0€</td>
+        </tr>
+    </table>
+
+    <h2>Book the Venue</h2>
+    <p>You can book the venue for your private events. The price from Monday to Thursday is 200€, and from Friday to Sunday it is 300€.</p>
+    <form onsubmit="confirmBooking(event)">
+        <label for="venueDate">Select Date:</label>
+        <input type="date" id="venueDate" name="venueDate" onchange="updatePrice()" required>
+        <p>Price: <span id="venuePrice">200€</span></p>
+        <button type="submit">Book</button>
+    </form>
+        
+    <button onclick="location.href='index.html'">Main Page</button>
+</body>
+</html>
